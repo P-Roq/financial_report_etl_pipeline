@@ -179,7 +179,7 @@ The path to this `.env` file must be configured in the `src/env_validation.py` m
     regarding the collection/company: TSLA.
 
 
-#### Check collection - available.
+#### Check collection - unavailable.
 
     $ python3 app/main.py --check-collection amd
 
