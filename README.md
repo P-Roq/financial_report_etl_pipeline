@@ -108,7 +108,7 @@ The path to this `.env` file must be configured in the `src/env_validation.py` m
     $ 2024-04-15 12:29:43,278 - INFO - Data regarding the company META successfully 
     pushed to the remote database.
     $ 2024-04-15 12:29:48,054 - INFO - A report has been generated and stored at 
-    /project_root/path/to/reports/financial_report_meta.pdf.
+    /path/to/reports/financial_report_meta.pdf.
 
 
 #### Successful report generation - pull from database.
@@ -120,7 +120,7 @@ The path to this `.env` file must be configured in the `src/env_validation.py` m
     collection/company: IBM.
     $ 2024-04-25 12:25:44,204 - INFO - Data successfully pulled from the remote database.
     $ 2024-04-25 12:25:49,626 - INFO - A report has been generated and stored at 
-    /project_root/path/to/reports/financial_report_ibm.pdf.
+    /path/to/reports/financial_report_ibm.pdf.
 
 #### Unable to connect to remote database.
 
