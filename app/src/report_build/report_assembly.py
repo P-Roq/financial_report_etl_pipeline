@@ -25,6 +25,10 @@ load_dotenv()
 
 root_dir = os.getenv("PYTHONPATH")
 
+reports_dir = root_dir + '/reports'
+if not os.path.exists(reports_dir):
+    os.makedirs(reports_dir)
+
 with open(f'{root_dir}/app/parameters.yml', 'r') as file:
     parameters = yaml.safe_load(file)
 
