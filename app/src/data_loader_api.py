@@ -30,7 +30,7 @@ api_key = settings.api_key
 
 report_name = f'{src_dir}/reports/financial_report_{company.lower()}.pdf'
 
-data_url_parameters = [
+args_data_api = [
     'OVERVIEW',
     'INCOME_STATEMENT',
     'BALANCE_SHEET',
@@ -50,36 +50,40 @@ data = {}
 
 data_check = {}
 
-for index, value in enumerate(data_url_parameters):
+for index, value in enumerate(args_data_api):
     full_url = f'{url_api}/query?function={value}&symbol={company}&apikey={api_key}'
     r = requests.get(full_url)
     raw_data = r.json()
 
     data_check[value] = check_request_output(raw_data)
 
-    if value == 'OVERVIEW':
-        check_request_limit(log, raw_data) # we only need to check the request limit once 
+    check_request_limit(log, raw_data)
 
-        table = pd.DataFrame(raw_data, index=['Overview']).transpose()
-        
-        table.index = [convert_camel_to_spaces(col) for col in table.index]
-        
-        table.loc['Data Source', 'Overview'] = url_api
-        
-        data[table_names[index]] = table
-        
-    elif value == 'EARNINGS':
-        table = pd.concat([pd.DataFrame(raw_data['annualEarnings'][row], index=[row]) for row in range(len(raw_data['annualEarnings']))])
-        table = table.set_index(table.columns[0], drop=True)
-        table.columns = [convert_camel_to_spaces(col) for col in table.columns]
-        
-        data[table_names[index]] = table
+    if data_check[value]:
+        if value == 'OVERVIEW':
 
-    elif value not in ['OVERVIEW', 'EARNINGS']:
-        table = pd.concat([pd.DataFrame(raw_data['annualReports'][row], index=[row]) for row in range(len(raw_data['annualReports']))])
-        table = table.set_index(table.columns[0], drop=True)
-        table.columns = [convert_camel_to_spaces(col) for col in table.columns]
+            table = pd.DataFrame(raw_data, index=['Overview']).transpose()
+            
+            table.index = [convert_camel_to_spaces(col) for col in table.index]
+            
+            table.loc['Data Source', 'Overview'] = url_api
+            
+            data[table_names[index]] = table
+            
+        elif value == 'EARNINGS':
+            check_request_limit(log, raw_data)
+            table = pd.concat([pd.DataFrame(raw_data['annualEarnings'][row], index=[row]) for row in range(len(raw_data['annualEarnings']))])
+            table = table.set_index(table.columns[0], drop=True)
+            table.columns = [convert_camel_to_spaces(col) for col in table.columns]
+            
+            data[table_names[index]] = table
+
+        elif value not in ['OVERVIEW', 'EARNINGS']:
+            check_request_limit(log, raw_data)
+            table = pd.concat([pd.DataFrame(raw_data['annualReports'][row], index=[row]) for row in range(len(raw_data['annualReports']))])
+            table = table.set_index(table.columns[0], drop=True)
+            table.columns = [convert_camel_to_spaces(col) for col in table.columns]
         
-        data[table_names[index]] = table
+            data[table_names[index]] = table
         
 check_request_all_outputs(log, data_check)

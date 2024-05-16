@@ -14,7 +14,7 @@ uri = f'mongodb+srv://{db_settings.user_db}:{db_settings.pw_db}@{db_settings.clu
  
 @log_exceptions(
     log_=log, 
-    success_message='Successfull connection to MongoDB.',
+    success_message='Successful connection to MongoDB.',
     stream_error_message='Unable to connect to MongoDB. Pipeline shuted down.',
     exit_app=True,
     )

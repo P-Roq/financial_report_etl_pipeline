@@ -29,14 +29,14 @@ def generate_last_year_section(
     
     title_coords = (50, 800)
 
-    year = last_year_data.loc['Latest Quarter', 'Values'][:4]
+    latest_quarter = last_year_data.loc['Latest Quarter', 'Values']
     
     #### Title.
     c.setFont("Helvetica-Bold", 13)
     c.drawString(
         title_coords[0],
         title_coords[1],
-        f'End Of The Last Year Indicators: {year}'
+        f'Latest Quarter Indicators: {latest_quarter}',
         )
     
     #### Table on the left.

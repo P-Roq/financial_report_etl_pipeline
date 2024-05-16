@@ -147,7 +147,7 @@ def check_request_all_outputs(log_: Loggers, data_check_: Dict[str, bool]):
         for logger_type in log_.loggers:
             if log_.loggers[logger_type]:
                 log_.loggers[logger_type].error(
-                    f'Unable to collect data from source via API for the following elements: {", ".join(faulty_data)}.',
+                    f"Unable to collect data from source via API for the following elements: {', '.join(faulty_data)}. Hint: check whether the company's symbol was specified correctly.",
                     )
         sys.exit(1)
 

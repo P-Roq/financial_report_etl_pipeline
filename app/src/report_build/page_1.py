@@ -51,8 +51,20 @@ def generate_overview_section(c, overview: pd.DataFrame) -> None:
 
     table.setStyle(style)
 
+    # Each additional line in table adds 12 points in height to the table, ceteris paribus.
+    # The smallest table possible has 162 points of height. 
+    width, height = table.wrap(0, 0)
+
+    discount_height = 0
+    for i in range(0, 6+1):
+        extra_height = i*12
+        if height == 162 + extra_height: 
+            discount_height += extra_height
+            break 
+
     table.wrapOn(c, 2, 2)
-    table.drawOn(c, 50, 450) 
+    table.drawOn(c, 50, 490 - extra_height)
+
 
 def generate_ratios_section(c, ratios: pd.DataFrame) -> None:
     ratios = ratios.drop(columns='Dividend Payout Ratio')
