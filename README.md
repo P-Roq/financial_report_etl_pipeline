@@ -77,7 +77,7 @@ The path to this `.env` file must be configured in the `src/env_validation.py` m
 
         positional arguments:
             company               
-                The company's symbol initiates the ETL (case-insensitive). It can be used to perform database 
+                The company's symbol initiates the program (case-insensitive). It can be used to perform database 
                 operations (check/delete collection).
 
         optional arguments:
@@ -89,7 +89,7 @@ The path to this `.env` file must be configured in the `src/env_validation.py` m
             -nr, --no-report      Indicates whether to suppress the generation of the report.
             -l, --log             Creates a log file and/or appends log entries to it.
             -fl, --flush-log      
-                Flushes the log file before a new ETL run or remote database operation (check/delete collection).
+                Flushes the log file before a new program run or remote database operation (check/delete collection).
 
 ## Other Features
 
@@ -98,7 +98,7 @@ The path to this `.env` file must be configured in the `src/env_validation.py` m
     - Similarly, the log file is stored by default in the `app` folder but can be stored elsewhere filling out `log_directory`. 
     - The number of runs before flushing can be specified by filling out the `runs_before_flush_log` parameter, otherwise, the log file is automatically flushed by default when it registers 10 app runs before the next run.
 
-- A check feature allows to identify/log whether requested JSON files - income statement, balance sheet, etc., were unsuccessfully collected from the source (shuts down the ETL).
+- A check feature allows to identify/log whether requested JSON files - income statement, balance sheet, etc., were unsuccessfully collected from the source (shuts down the program).
 
 ### Examples - command and standard output.
 
