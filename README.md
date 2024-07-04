@@ -42,7 +42,7 @@ The financial statements records usually span over a period of 10+ years unless 
 
 ![page_3](/img/report_example_page_3.jpg)
 
-## Instalation
+## Installation
 
 Python version used: 3.8.19
 
